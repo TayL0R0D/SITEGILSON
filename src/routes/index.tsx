@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import {
   TreePine, Waves, Wifi, Car, Utensils, Flame,
-  MapPin, Menu, X as XIcon, Music, Mic
+  MapPin, Menu, X as XIcon, Music, Mic, Phone
 } from 'lucide-react'
 import { AvailabilityCalendar } from '@/components/AvailabilityCalendar'
 import { BookingModal } from '@/components/BookingModal'
@@ -126,10 +126,48 @@ function HeroSection() {
             style={{ background: 'var(--color-forest)', color: 'white' }}>
             Ver Disponibilidade
           </a>
-          <a
-  href="#gallery"
-  className="px-8 py-4 rounded-full text-base font-semibold border-2 border-white text-white transition-all hover:bg-white/10"
->
-    Ver Galeria
-  </a>
-</div>
+          <a href="#gallery"
+            className="px-8 py-4 rounded-full text-base font-semibold border-2 border-white text-white transition-all hover:bg-white/10"
+          >
+            Ver Galeria
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function GallerySection() {
+  const [lightbox, setLightbox] = useState<number | null>(null)
+
+  return (
+    <section id="gallery" className="py-20 px-5 max-w-6xl mx-auto">
+      <div className="text-center mb-12">
+        <p className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: 'var(--color-terracotta)' }}>
+          O Espaço
+        </p>
+        <h2 className="text-3xl md:text-4xl" style={{ fontFamily: 'var(--font-serif)' }}>
+          Cada Detalhe, Pensado para Você
+        </h2>
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+        {galleryPhotos.map((photo, idx) => (
+          <div
+            key={photo.id}
+            className={`gallery-item overflow-hidden rounded-xl cursor-pointer relative ${
+              photo.span === 'wide' ? 'col-span-2' :
+              photo.span === 'tall' ? 'row-span-2' : ''
+            }`}
+            style={{ aspectRatio: photo.span === 'wide' ? '16/9' : photo.span === 'tall' ? '3/4' : '1/1' }}
+            onClick={() => setLightbox(idx)}
+          >
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              className="w-full h-full object-cover transition-transform duration-500"
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+  )
