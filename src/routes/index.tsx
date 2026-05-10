@@ -126,5 +126,10 @@ function HeroSection() {
             style={{ background: 'var(--color-forest)', color: 'white' }}>
             Ver Disponibilidade
           </a>
-          <a href="#gallery"
-            className="px-8 py-4 rounded-full text-base 
+          <a
+  href="#gallery"
+  className="px-8 py-4 rounded-full text-base font-semibold border-2 border-white text-white transition-all hover:bg-white/10"
+>
+    Ver Galeria
+  </a>
+</div>
